@@ -1,0 +1,314 @@
+Task-1: Database & MySQL Basics
+---------------------------------
+
+1.
+
+>>>Database  : A database is an organized collection of structured information or data, typically
+               stored electronically in a computer system.
+               A database is designed to handle large amounts of information efficiently, allowing 
+               for quick searching, filtering and updating.
+>>>RDBMS     : Relational Database Management System
+               The data is stored in tabular format.
+               SQL is needed. ex: MySQL, PostgreSQL, Oracel, Microsoft SQL Server.
+>>>DBMS(NoSQL): Database Management System.
+               The data is stored in non-tabular format.
+               These are designed for unstructured data.
+               Data is stored in different formats such as document stores,key-value 
+               pairs,Wide-column stores and graph databases.
+               ex: MongoDB, Cassandra and Redis.
+>>>MySQL     : Structured Query Language
+               It is most popular open-source RDBMS.
+               It is the primary data store for many of the websites, including Facebook,Twitter,Youtube.
+>>>SQL syntax rules :
+   . It is case-insensitive(a=A). Keywords like SELECT,select,SeLeCt all do the same thing.
+   . Semicolon(;) - It is the standard way to seperate SQL statements. It tells the server "This command is
+                    finished and to execute.
+
+2.Create a database named training_db.
+
+syntax:    create database training_db;
+
+3 & 4: Table creation
+
+use training_db;
+
+create table animals(
+animal_id int primary key,
+name varchar(20),
+bread char(3),
+details text,
+weight float,
+is_healthy boolean,
+arrival_date date,
+arrival_time time); 
+
+5. CRUD Operations
+
+INSERT:
+------------
+
+insert into animals
+values(1,"Lion","AFR","Very social",190.5,TRUE,"2025-05-12","10:51:00"),
+(2,"Cheetah","AFR","Extremely fast",52,TRUE,"2025-06-11","09:01:00"),
+(3,"Tiger","BEN","Prefers swimming",220.5,TRUE,"2024-02-21","7:00:00"),
+(4,"Leopard","IND","Climbing trees",65.0,TRUE,"2026-01-01","10:30:00"),
+(5,"Snake","PYT","Required special temp.",12.8,FALSE,"2025-07-05","11:30:00")
+;
+
+SELECT:
+-------------
+SELECT * FROM ANIMALS;
+
+UPDATE:
+-------------
+update animals set is_healthy=TRUE where animal_id=5;
+
+DELETE:
+-----------
+
+insert into animals
+values(6,"Lion","AFR","Very social",190.5,TRUE,"2025-05-12","10:51:00");
+
+DELETE from animals where animal_id=6;
+
+
+6.Comparision Operators:
+---------------------------
+>>> Equality(=):
+    select * from animals 
+    where name="Tiger";
+
+>>> Not Equal(<> , !=):
+      select * from animals 
+      where name!="snake";
+
+      select * from animals 
+      where name<>"lion";
+
+>>> Greater than(>) & Less than(<):   
+       select name from animals 
+       where weight>50;
+
+       select name from animals
+       where weight<50;
+
+>>> Greater than or Equal to(>=) & Less than or Equal to(<):
+       select name,arrival_date from animals
+       where arrival_date >= "2025-01-01";
+
+       select animal_id,name,arrival_date from animals
+       where arrival_date <= "2025-01-01";
+
+====================================================================================================
+
+Task-2:Python Fundamentals
+---------------------------------------
+1.
+program:
+
+print("Hello World, Welcome to Python")
+
+num=10
+num=10 #varaible declaration can start with letters
+_a=20  # _ can be used at starting
+print(_a)
+a_b=30 # _ can be used to seperate two wods
+print(a_b)
+Python=1
+print(Python)
+
+ var=20 #error
+$salary=4 #error
+11num=34 #error
+var 1=45 #error
+'''space cannot be used at the starting
+it throws an error
+ '''
+
+var1=9
+print(var1)
+
+comments:
+-----------
+
+single-line-comments- #Its a single line comment
+                      #For each line "#" is mandatory
+                      For single line of code
+
+multi-line-comments-  '''Its a multi line comment
+                      It can be used for many lines as you need without usinh # on every line.'''
+                      """we can also use double quotes
+                      as your wish."""
+                      For long explanations.
+
+Variable declarations and naming rules:
+
+--> It can include letters,numbers and underscore(_).
+--> They should always start with as non-numeric character.
+--> It should not be seperated with space instead you can use underscore(_).
+--> It can start with underscore(_).
+
+2.
+
+#int
+a=100
+num_data=20
+
+#float
+
+b=20.5/num_data
+print(b)
+
+#string
+
+name="Divya"
+name1="Sree"
+fullname="My name"+" "+"is "+name+" "+name1 # cancatenation
+print(fullname)
+print("I am "+"working in Stackly"+" "+"as a Associate Software Engineer")
+
+#boolean
+
+c=5
+d=6
+print(a>b)
+print(a==b)
+
+3. Type Casting:
+---------------------
+
+int()- string,float values to integers
+float()- string,integer values to float
+str()-integer,float values to string
+bool()- Truthy or Falsy values
+
+age=25
+print("i am "+str(age)+"years old")
+
+amount=299.9
+print(int(amount))
+
+num="60"
+print(int(num))
+print(float(num))
+
+print(bool(num))  //true
+print(bool(amount))   //true
+print(bool(0))          //false
+print(bool(""))       //false
+
+4.Operators
+----------------------
+>>> Arithmetic operators
+a=26
+b=39
+# Addition ---> +
+print(a+b)
+# Subtraction ---> - 
+print(a-b)
+# Multiplication ---> *
+print(a*b)
+# Division ---> /
+print(a/b)
+# Floor Division ---> //
+print(a//b)
+# Modulus ---> % (reminder)
+print(a%b)
+# Exponentiation ---> ** 
+print(a**b)
+
+>>>Comparision Operators(Boolean)
+
+a=25
+b=30
+# == equal to
+print(a==b)
+# != not equal to
+print(a!=b)
+# < lesser than 
+print(a<b)
+# > greater than
+print(a>b) 
+# <= less or equal to
+print(a<=b)
+# >= greater or equal to
+print(a>=b)
+
+>>>Logical Operators
+
+a=True
+b=False
+# AND --> and 
+print(a and b)
+# OR --> or
+print(a or b)
+# NOT --> not 
+print(not a)
+print(not b)
+
+>>>Assignment Operators
+
+# = assign
+a=20
+# += add and assign
+a+=5
+print(a)
+# -= a sub and assign
+a-=5
+print(a)
+# *=
+a*=5
+print(a)
+# /=
+a/=5
+print(a)
+# //=
+a//=5
+print(a)
+# %=
+a%=5
+print(a)
+# **=
+a**=5
+print(a)
+
+>>>Bitwise Operators
+
+# and---> &
+print(5&12)
+# or--> |
+print(5|12)
+# x-or ---> ^
+print(5^12)
+# not --> ~
+print(~12)
+# right shift --->  >>
+print(4>>2)
+# left shift---> <<
+print(4<<2)
+
+Explanation for ~n=-(n+1)
+-----------------------------
+--->It holds true because in Two's Complement Arithmetic, the bitwise NOT operation 
+is equivalent to negating a number and then subtracting one.
+--->Two's complement 
+    -n=~n+1
+subtracting 1 on both sides
+    -n-1=~n
+    -(n+1)=~n
+
+5. Run the program in terminal command using 
+     i.e. python Task.py
+     
+
+
+
+
+
+
+
+
+
+
+                      
+
