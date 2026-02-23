@@ -24,11 +24,15 @@ Task-1: Database & MySQL Basics
    . Semicolon(;) - It is the standard way to seperate SQL statements. It tells the server "This command is
                     finished and to execute.
 
+--------------------------------------
 2.Create a database named training_db.
+--------------------------------------
 
 syntax:    create database training_db;
 
+--------------------------
 3 & 4: Table creation
+--------------------------
 
 use training_db;
 
@@ -42,7 +46,10 @@ is_healthy boolean,
 arrival_date date,
 arrival_time time); 
 
+----------------------
 5. CRUD Operations
+-----------------------
+
 
 INSERT:
 ------------
@@ -71,7 +78,7 @@ values(6,"Lion","AFR","Very social",190.5,TRUE,"2025-05-12","10:51:00");
 
 DELETE from animals where animal_id=6;
 
-
+---------------------------
 6.Comparision Operators:
 ---------------------------
 >>> Equality(=):
@@ -98,6 +105,34 @@ DELETE from animals where animal_id=6;
 
        select animal_id,name,arrival_date from animals
        where arrival_date <= "2025-01-01";
+
+>>>between
+    SELECT * FROM ANIMALS 
+    WHERE WEIGHT between 50 AND 150;
+
+>>>IN Operator
+         SELECT * FROM ANIMALS WHERE BREAD IN ('AFR','IND');
+
+>>>Like Operator
+
+    SELECT * FROM ANIMALS WHERE NAME LIKE 'L%';
+    SELECT * FROM ANIMALS WHERE NAME LIKE '%A%';
+    SELECT * FROM ANIMALS WHERE NAME LIKE '_____';
+    SELECT * FROM ANIMALS WHERE NAME LIKE '%E';
+
+>>>Logical Operators
+
+    SELECT * FROM ANIMALS
+    WHERE NAME='LION' AND BREAD='AFR';
+
+    SELECT * FROM ANIMALS 
+    WHERE NAME='CHEETAH' OR NAME='TIGER'; 
+
+    SELECT * FROM ANIMALS
+    WHERE NOT BREAD='IND';
+
+    SELECT * FROM ANIMALS
+    WHERE IS_HEALTHY=TRUE AND (NAME='LION' OR BREAD='AFR');
 
 ====================================================================================================
 
@@ -128,8 +163,9 @@ it throws an error
 var1=9
 print(var1)
 
+------------------
 comments:
------------
+------------------
 
 single-line-comments- #Its a single line comment
                       #For each line "#" is mandatory
@@ -141,7 +177,9 @@ multi-line-comments-  '''Its a multi line comment
                       as your wish."""
                       For long explanations.
 
+----------------------------------------
 Variable declarations and naming rules:
+----------------------------------------
 
 --> It can include letters,numbers and underscore(_).
 --> They should always start with as non-numeric character.
@@ -197,9 +235,13 @@ print(bool(amount))   //true
 print(bool(0))          //false
 print(bool(""))       //false
 
+----------------------
 4.Operators
 ----------------------
+
 >>> Arithmetic operators
+---------------------------
+
 a=26
 b=39
 # Addition ---> +
@@ -218,6 +260,7 @@ print(a%b)
 print(a**b)
 
 >>>Comparision Operators(Boolean)
+----------------------------------
 
 a=25
 b=30
@@ -235,6 +278,7 @@ print(a<=b)
 print(a>=b)
 
 >>>Logical Operators
+------------------------
 
 a=True
 b=False
@@ -247,6 +291,7 @@ print(not a)
 print(not b)
 
 >>>Assignment Operators
+---------------------------
 
 # = assign
 a=20
@@ -273,6 +318,7 @@ a**=5
 print(a)
 
 >>>Bitwise Operators
+---------------------------
 
 # and---> &
 print(5&12)
@@ -287,8 +333,11 @@ print(4>>2)
 # left shift---> <<
 print(4<<2)
 
+
+-----------------------------
 Explanation for ~n=-(n+1)
 -----------------------------
+
 --->It holds true because in Two's Complement Arithmetic, the bitwise NOT operation 
 is equivalent to negating a number and then subtracting one.
 --->Two's complement 
@@ -297,8 +346,43 @@ subtracting 1 on both sides
     -n-1=~n
     -(n+1)=~n
 
+>>>Membership operators:
+---------------------------
+* in 
+
+name="Divya"
+print('i' in name)   #true
+print('ya' in name)   #true
+print('a ' in name)    #false
+print('p' in name)   #false
+
+* not in
+
+name="Divya Sree"
+print("iv" not in name)   #false
+print("aS" not in name)     #true
+
+>>>Identity Operators:
+----------------------------
+* is
+
+a=10
+b=20
+print(a is b)   # false
+print(a is b-10)  #true
+
+* not is
+
+a=15
+b=25
+print(a is not b) #true
+print(b is not a)   #true
+print(a+10 is not 50-b)    #false
+
 5. Run the program in terminal command using 
+------------------------------------------------
      i.e. python Task.py
+
      
 
 

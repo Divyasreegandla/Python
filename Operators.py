@@ -67,5 +67,26 @@
 # print(~19)
 # print(~-11)
 
-print(10)
-print(20)
+#Membership operators
+
+# name="Divya"
+# print('i' in name)   #true
+# print('ya' in name)   #true
+# print('a ' in name)    #false
+# print('p' in name)   #false
+
+# name="Divya Sree"
+# print("iv" not in name)   #false
+# print("aS" not in name)     #true
+
+a=10
+b=20
+print(a is b)   # false
+print(a is b-10)  #true
+
+a=15
+b=25
+print(a is not b) #true
+print(b is not a)   #true
+print(a+10 is not 50-b)    #false
+

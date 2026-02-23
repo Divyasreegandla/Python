@@ -70,14 +70,15 @@
 #     if True:
 #         print("hii")
 
-a=int(input("enter a number"))
-if a>10:
-    if a>15:
-     print("very large")
-    else:
-       print("large")
-else:
-   if a<5:
-      print("very small")
-   else:
-      print("small")
+# a=int(input("enter a number"))
+# if a>10:
+#     if a>15:
+#      print("very large")
+#     else:
+#        print("large")
+# else:
+#    if a<5:
+#       print("very small")
+#    else:
+#       print("small")
+
