@@ -381,6 +381,10 @@ print(a+10 is not 50-b)    #false
 
 5. Run the program in terminal command using 
 ------------------------------------------------
+-->Open VS code 
+-->On the top Left side click on terminal
+-->Type your filename.py and click enter
+
      i.e. python Task.py
 
      
