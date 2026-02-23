@@ -66,3 +66,6 @@
 # print(16>>3)
 # print(~19)
 # print(~-11)
+
+print(10)
+print(20)
