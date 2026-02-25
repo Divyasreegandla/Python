@@ -79,14 +79,16 @@
 # print("iv" not in name)   #false
 # print("aS" not in name)     #true
 
-a=10
-b=20
-print(a is b)   # false
-print(a is b-10)  #true
+#Identity operators
 
-a=15
-b=25
-print(a is not b) #true
-print(b is not a)   #true
-print(a+10 is not 50-b)    #false
+# a=10
+# b=20
+# print(a is b)   # false
+# print(a is b-10)  #true
+
+# a=15
+# b=25
+# print(a is not b) #true
+# print(b is not a)   #true
+# print(a+10 is not 50-b)    #false
 

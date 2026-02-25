@@ -139,17 +139,107 @@
 
 # Bitwise Operator
 
-# and---> &
-print(5&12)
-# or--> |
-print(5|12)
-# x-or ---> ^
-print(5^12)
-# not --> ~
-print(~12)
-# right shift --->  >>
-print(4>>2)
-# left shift---> <<
-print(4<<2)
+# # and---> &
+# print(5&12)
+# # or--> |
+# print(5|12)
+# # x-or ---> ^
+# print(5^12)
+# # not --> ~
+# print(~12)
+# # right shift --->  >>
+# print(4>>2)
+# # left shift---> <<
+# print(4<<2)
 
 
+#Membership operators
+
+# name="Divya"
+# print('i' in name)   #true
+# print('ya' in name)   #true
+# print('a ' in name)    #false
+# print('p' in name)   #false
+
+# name="Divya Sree"
+# print("iv" not in name)   #false
+# print("aS" not in name)     #true
+
+#Identity operators
+
+# a=10
+# b=20
+# print(a is b)   # false
+# print(a is b-10)  #true
+
+# a=15
+# b=25
+# print(a is not b) #true
+# print(b is not a)   #true
+# print(a+10 is not 50-b)    #false
+
+
+# ******************************************************************
+
+# Loops
+
+
+# N=int(input("Enter a number: "))
+# i=1
+# a=i
+# while i<=N:
+#     print(i)
+#     i+=1
+# print("The Numbers from ",a,"to ",N,"printed successfully using while loop....!")
+
+# for i in range(1,11):
+#     print(i)
+# print("The Numbers from 1 to 10 printed successfully using for loop....!")
+
+# for i in range(1,21):
+#     if i%2==0:
+#         print(i)
+# print("The Even numbers from 1 to 20 are printed successfully using for loop....!")
+
+# for i in range(2,21,2):
+#     print(i)
+# print("The Even numbers from 1 to 20 are printed successfully using for loop....!")
+
+
+
+# for i in range(1,10):
+#     if i==5:
+#         break
+#     print(i)
+# print("Executed Successfully....!")
+# print("Loop stopped at i==4 because when i==5 condition",
+#          " is satisfied and break is used it comes out of the loop")
+
+# for i in range(1,10):
+#     print(i)
+#     if i==5:
+#         break
+# print("Executed Successfully....!")
+
+# i=0
+# while i<10:
+#     if i==5:
+#         break
+#     print(i)  
+#     i+=1 
+# print("Executed successfully ,it breaks when i=5")
+
+
+# for i in range(1,15):
+#     if i==9:
+#         continue
+#     print(i)
+# print("Loop executed, it skips 9")
+
+# i=0
+# while i<10:
+#     i+=1
+#     if i==7:
+#         continue
+#     print(i)
+# print("Executed Successfully, it skips 7")

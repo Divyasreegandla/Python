@@ -1,402 +1,190 @@
-Task-1: Database & MySQL Basics
----------------------------------
+Task-1: SQL-Functions
 
-1.
+             #### 1. Creating a database function_db ####
+             ---------------------------------------------
 
->>>Database  : A database is an organized collection of structured information or data, typically
-               stored electronically in a computer system.
-               A database is designed to handle large amounts of information efficiently, allowing 
-               for quick searching, filtering and updating.
->>>RDBMS     : Relational Database Management System
-               The data is stored in tabular format.
-               SQL is needed. ex: MySQL, PostgreSQL, Oracel, Microsoft SQL Server.
->>>DBMS(NoSQL): Database Management System.
-               The data is stored in non-tabular format.
-               These are designed for unstructured data.
-               Data is stored in different formats such as document stores,key-value 
-               pairs,Wide-column stores and graph databases.
-               ex: MongoDB, Cassandra and Redis.
->>>MySQL     : Structured Query Language
-               It is most popular open-source RDBMS.
-               It is the primary data store for many of the websites, including Facebook,Twitter,Youtube.
->>>SQL syntax rules :
-   . It is case-insensitive(a=A). Keywords like SELECT,select,SeLeCt all do the same thing.
-   . Semicolon(;) - It is the standard way to seperate SQL statements. It tells the server "This command is
-                    finished and to execute.
+>>>create database function_db;
 
---------------------------------------
-2.Create a database named training_db.
---------------------------------------
+             #### 2. Creating a table employees in function_db ####
+             -------------------------------------------------------
 
-syntax:    create database training_db;
+>>>use function_db;
+    
+>>>create table employees(
+   emp_id int primary key,
+   emp_name varchar(50),
+   salary float,
+   joining_date date
+   );
 
---------------------------
-3 & 4: Table creation
---------------------------
+             #### 3. Inserting values in employees table ####
+             -------------------------------------------------
 
-use training_db;
+>>>insert into employees(emp_id,emp_name,salary,joining_date)
+   values (2534,'Priya',34000.00,'2025-10-01'),
+   (2505,'Bavya',35000.75,'2025-09-15'),
+   (2646,'Kiran',31500.20,'2026-01-11'),
+   (2537,'Divya',31000.99,'2025-12-01'),
+   (2608,'Sai',32000.40,'2026-02-01');
 
-create table animals(
-animal_id int primary key,
-name varchar(20),
-bread char(3),
-details text,
-weight float,
-is_healthy boolean,
-arrival_date date,
-arrival_time time); 
+select * from employees;
 
-----------------------
-5. CRUD Operations
------------------------
+             #### 4. Numeric Functions ####
+             -------------------------------
 
+ROUND---> Rounds to the nearest integer.
 
-INSERT:
-------------
+          SELECT EMP_NAME,round(SALARY) 
+          FROM EMPLOYEES;
 
-insert into animals
-values(1,"Lion","AFR","Very social",190.5,TRUE,"2025-05-12","10:51:00"),
-(2,"Cheetah","AFR","Extremely fast",52,TRUE,"2025-06-11","09:01:00"),
-(3,"Tiger","BEN","Prefers swimming",220.5,TRUE,"2024-02-21","7:00:00"),
-(4,"Leopard","IND","Climbing trees",65.0,TRUE,"2026-01-01","10:30:00"),
-(5,"Snake","PYT","Required special temp.",12.8,FALSE,"2025-07-05","11:30:00")
-;
+CEIL---> Rounds up to the next integer.
 
-SELECT:
--------------
-SELECT * FROM ANIMALS;
+          SELECT EMP_NAME,ceil(SALARY)
+          FROM EMPLOYEES;
 
-UPDATE:
--------------
-update animals set is_healthy=TRUE where animal_id=5;
+FLOOR ---> Rounds down to the previous integer.
 
-DELETE:
+          SELECT EMP_NAME,floor(SALARY)
+          FROM EMPLOYEES;
+
+MOD(a,b) ----> Returns the reminder.
+
+         SELECT EMP_NAME,mod(SALARY,1000)
+         FROM EMPLOYEES;
+
+             #### String Functions ####
+             ---------------------------
+
+CONCAT(str1,str2,str3.....) ---> Joins two or more strings.
+                  
+         SELECT concat('Name of the Employee:',"   ",emp_name) as Emp_name
+         FROM EMPLOYEES;
+
+LENGTH(str) --> Counts the characters in the string.
+ 
+         SELECT EMP_NAME,length(EMP_NAME)
+         FROM EMPLOYEES;
+
+UPPER & LOWER  ----> Changes the case.
+
+         SELECT upper(EMP_NAME),lower(EMP_NAME)
+         FROM EMPLOYEES;
+
+REPLACE(str,old,new) --> to replace a specific part of string.
+ 
+         SELECT REPLACE(EMP_NAME,'a','@') as emp_name
+         FROM EMPLOYEES;
+
+SUBSTRING(str, start, len) --> to extract specific part of a string.
+
+         SELECT substring(EMP_NAME,1,3) as emp_name
+         FROM EMPLOYEES;
+
+             #### Data & Time Functions ####
+             --------------------------------
+
+CURDATE()--> Returns current date
+
+>>> SELECT CURDATE();
+
+curtime()--> Returns current time
+
+>>> SELECT CURTIME();
+
+NOW() -->both Date and Time
+
+>>> SELECT NOW();
+
+DATEDIFF(d1,d2) --> difference between 2 dates in days.
+
+>>> SELECT DATEDIFF(CURDATE(),joining_date) as NO_OF_DAYS_IN_COMPANY
+    FROM EMPLOYEES;
+
+*****************************************************************************************
+
+Task:2- Python-Loops
+
+                    #### 1. Python Program using while loop ####
+                    ---------------------------------------------
+
+>>> N=int(input("Enter a number: "))
+    i=1
+    a=i
+    while i<=N:
+        print(i)
+        i+=1
+    print("The Numbers from ",a,"to ",N,"printed successfully using while loop....!")
+
+                    #### 2. Python Program using for loop ####
+                    -------------------------------------------
+
+>>> for i in range(1,11):
+        print(i)
+    print("The Numbers from 1 to 10 printed successfully using for loop....!")
+
+>>> for i in range(1,21):
+        if i%2==0:
+            print(i)
+    print("The Even numbers from 1 to 20 are printed successfully using for loop....!")
+                               (or)
+>>> for i in range(2,21,2):
+        print(i)
+    print("The Even numbers from 1 to 20 are printed successfully using for loop....!")
+
+                    #### 3. Demonstrate using range Function ####
+                    ----------------------------------------------
+
+range(len) --> Starts with 0 and ends with len-1
+       ex: range(6) --> [0,1,2,3,4,5]
+
+range(start,end) --> Starts with start and end with end-1
+       ex: range(2,11)-->[2,3,4,5,6,7,8,9,10]
+
+range(start,end,step) --> Starts with start and ends with end-1 and 
+                          the difference between the values is step.
+       ex: range(4,18,2) --> [4,6,8,10,12,14,16]
+
+                    #### 4. Loop Control Statements ####
+                    -------------------------------------
+break     :  Used to exit the loop or stop the loop if the condition is met.
+---------
+
+>>> for i in range(1,10):
+        if i==5:
+            break
+        print(i)
+    print("Executed Successfully....!")
+    print("Loop stopped at i==4 because when i==5 condition",
+            " is satisfied and break is used it comes out of the loop")
+
+>>> for i in range(1,10):
+        print(i)
+        if i==5:
+            break
+    print("Executed Successfully....!")
+
+>>> i=0
+    while i<10:
+        if i==5:
+            break
+        print(i) 
+        i+=1 
+    print("Executed successfully ,it breaks when i=5")
+
+continue  :  Used to skip the current iteration and move to the next one.
 -----------
 
-insert into animals
-values(6,"Lion","AFR","Very social",190.5,TRUE,"2025-05-12","10:51:00");
-
-DELETE from animals where animal_id=6;
-
----------------------------
-6.Comparision Operators:
----------------------------
->>> Equality(=):
-    select * from animals 
-    where name="Tiger";
-
->>> Not Equal(<> , !=):
-      select * from animals 
-      where name!="snake";
-
-      select * from animals 
-      where name<>"lion";
-
->>> Greater than(>) & Less than(<):   
-       select name from animals 
-       where weight>50;
-
-       select name from animals
-       where weight<50;
-
->>> Greater than or Equal to(>=) & Less than or Equal to(<):
-       select name,arrival_date from animals
-       where arrival_date >= "2025-01-01";
-
-       select animal_id,name,arrival_date from animals
-       where arrival_date <= "2025-01-01";
-
->>>between
-    SELECT * FROM ANIMALS 
-    WHERE WEIGHT between 50 AND 150;
-
->>>IN Operator
-         SELECT * FROM ANIMALS WHERE BREAD IN ('AFR','IND');
-
->>>Like Operator
-
-    SELECT * FROM ANIMALS WHERE NAME LIKE 'L%';
-    SELECT * FROM ANIMALS WHERE NAME LIKE '%A%';
-    SELECT * FROM ANIMALS WHERE NAME LIKE '_____';
-    SELECT * FROM ANIMALS WHERE NAME LIKE '%E';
-
->>>Logical Operators
-
-    SELECT * FROM ANIMALS
-    WHERE NAME='LION' AND BREAD='AFR';
-
-    SELECT * FROM ANIMALS 
-    WHERE NAME='CHEETAH' OR NAME='TIGER'; 
-
-    SELECT * FROM ANIMALS
-    WHERE NOT BREAD='IND';
-
-    SELECT * FROM ANIMALS
-    WHERE IS_HEALTHY=TRUE AND (NAME='LION' OR BREAD='AFR');
-
-====================================================================================================
-
-Task-2:Python Fundamentals
----------------------------------------
-1.
-program:
-
-print("Hello World, Welcome to Python")
-
-num=10
-num=10 #varaible declaration can start with letters
-_a=20  # _ can be used at starting
-print(_a)
-a_b=30 # _ can be used to seperate two wods
-print(a_b)
-Python=1
-print(Python)
-
- var=20 #error
-$salary=4 #error
-11num=34 #error
-var 1=45 #error
-'''space cannot be used at the starting
-it throws an error
- '''
-
-var1=9
-print(var1)
-
-------------------
-comments:
-------------------
-
-single-line-comments- #Its a single line comment
-                      #For each line "#" is mandatory
-                      For single line of code
-
-multi-line-comments-  '''Its a multi line comment
-                      It can be used for many lines as you need without usinh # on every line.'''
-                      """we can also use double quotes
-                      as your wish."""
-                      For long explanations.
-
-----------------------------------------
-Variable declarations and naming rules:
-----------------------------------------
-
---> It can include letters,numbers and underscore(_).
---> They should always start with as non-numeric character.
---> It should not be seperated with space instead you can use underscore(_).
---> It can start with underscore(_).
-
-2.
-
-#int
-a=100
-num_data=20
-
-#float
-
-b=20.5/num_data
-print(b)
-
-#string
-
-name="Divya"
-name1="Sree"
-fullname="My name"+" "+"is "+name+" "+name1 # cancatenation
-print(fullname)
-print("I am "+"working in Stackly"+" "+"as a Associate Software Engineer")
-
-#boolean
-
-c=5
-d=6
-print(a>b)
-print(a==b)
-
-3. Type Casting:
----------------------
-
-int()- string,float values to integers
-float()- string,integer values to float
-str()-integer,float values to string
-bool()- Truthy or Falsy values
-
-age=25
-print("i am "+str(age)+"years old")
-
-amount=299.9
-print(int(amount))
-
-num="60"
-print(int(num))
-print(float(num))
-
-print(bool(num))  //true
-print(bool(amount))   //true
-print(bool(0))          //false
-print(bool(""))       //false
-
-----------------------
-4.Operators
-----------------------
-
->>> Arithmetic operators
----------------------------
-
-a=26
-b=39
-# Addition ---> +
-print(a+b)
-# Subtraction ---> - 
-print(a-b)
-# Multiplication ---> *
-print(a*b)
-# Division ---> /
-print(a/b)
-# Floor Division ---> //
-print(a//b)
-# Modulus ---> % (reminder)
-print(a%b)
-# Exponentiation ---> ** 
-print(a**b)
-
->>>Comparision Operators(Boolean)
-----------------------------------
-
-a=25
-b=30
-# == equal to
-print(a==b)
-# != not equal to
-print(a!=b)
-# < lesser than 
-print(a<b)
-# > greater than
-print(a>b) 
-# <= less or equal to
-print(a<=b)
-# >= greater or equal to
-print(a>=b)
-
->>>Logical Operators
-------------------------
-
-a=True
-b=False
-# AND --> and 
-print(a and b)
-# OR --> or
-print(a or b)
-# NOT --> not 
-print(not a)
-print(not b)
-
->>>Assignment Operators
----------------------------
-
-# = assign
-a=20
-# += add and assign
-a+=5
-print(a)
-# -= a sub and assign
-a-=5
-print(a)
-# *=
-a*=5
-print(a)
-# /=
-a/=5
-print(a)
-# //=
-a//=5
-print(a)
-# %=
-a%=5
-print(a)
-# **=
-a**=5
-print(a)
-
->>>Bitwise Operators
----------------------------
-
-# and---> &
-print(5&12)
-# or--> |
-print(5|12)
-# x-or ---> ^
-print(5^12)
-# not --> ~
-print(~12)
-# right shift --->  >>
-print(4>>2)
-# left shift---> <<
-print(4<<2)
-
-
------------------------------
-Explanation for ~n=-(n+1)
------------------------------
-
---->It holds true because in Two's Complement Arithmetic, the bitwise NOT operation 
-is equivalent to negating a number and then subtracting one.
---->Two's complement 
-    -n=~n+1
-subtracting 1 on both sides
-    -n-1=~n
-    -(n+1)=~n
-
->>>Membership operators:
----------------------------
-* in 
-
-name="Divya"
-print('i' in name)   #true
-print('ya' in name)   #true
-print('a ' in name)    #false
-print('p' in name)   #false
-
-* not in
-
-name="Divya Sree"
-print("iv" not in name)   #false
-print("aS" not in name)     #true
-
->>>Identity Operators:
-----------------------------
-* is
-
-a=10
-b=20
-print(a is b)   # false
-print(a is b-10)  #true
-
-* not is
-
-a=15
-b=25
-print(a is not b) #true
-print(b is not a)   #true
-print(a+10 is not 50-b)    #false
-
-5. Run the program in terminal command using 
-------------------------------------------------
--->Open VS code 
--->On the top Left side click on terminal
--->Type your filename.py and click enter
-
-     i.e. python Task.py
-
-     
-
-
-
-
-
-
-
-
-
-
-                      
-
+>>> for i in range(1,15):
+        if i==9:
+            continue
+        print(i)
+    print("Loop executed, it skips 9")
+
+>>> i=0
+    while i<10:
+        i+=1
+        if i==7:
+            continue
+        print(i)
+    print("Executed Successfully, it skips 7")
+                
