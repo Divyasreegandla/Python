@@ -46,7 +46,7 @@
 
 #Tuple
 
-tup1=(1,2,3,4,3,2,1,"Hello","Hi")
+# tup1=(1,2,3,4,3,2,1,"Hello","Hi")
 # tup1[3]=44   #not possible error
 # print(tup1.index("Hello"))
 # print(tup1.index("Hello world"))  #error
@@ -86,11 +86,11 @@ set2={7,8,9,10,11,12,13}
 
 # Dict 
 
-studentDetail={
-    "name":"Prem",
-    "class":12,
-    "allClear":True
-}
+# studentDetail={
+#     "name":"Prem",
+#     "class":12,
+#     "allClear":True
+# }
 
 # print(studentDetail["name"])
 # studentDetail["class"]=11

@@ -1,0 +1,250 @@
+Task Assignment: SQL Joins & Python Data Structures
+
+📌 Task 1: SQL – Joins
+--------------------------
+
+create database joins_db;
+
+use joins_db;
+
+-- Table:1: Departments--
+
+create table departments (
+dept_id int primary key,
+dept_name varchar(50)
+);
+
+-- Table:2: Employees--
+
+create table employees (
+emp_id int primary key,
+emp_name varchar(50),
+salary float,
+dept_id int,
+foreign key(dept_id) references
+departments(dept_id)
+);
+
+-- Inserting in Departments table---
+
+insert into departments 
+values (1001,"Data Analyst"),
+(1002,"Associate Software"),
+(1003,"SQL Developer"),
+(1004,"Devops Engineer"),
+(1005,"AI/ML Engineer"),
+(1006,"Python Developer")
+;
+
+select * from departments;
+
+-- Inserting in Employees table---
+
+insert into employees
+values (201,"Kiran",50000.00,1002),
+(202,"Ramesh",40000.99,1001),
+(203,"Latha",45000.00,1003),
+(204,"Priya",55000,1004),
+(205,"Ravi",60000.99,1005),
+(206,"Deva",55000.50,1006),
+(207,"Vijay",45000.99,1002),
+(208,"Karan",50000.50,1005);
+
+select * from employees;
+
+-- inner join-- 
+-----------------
+
+--> Return only matching records from both tables.
+--> Returns only the employees who belong to a departments and 
+    only departments that have employees.
+
+select e.emp_id,e.emp_name,d.dept_name
+from employees e
+inner join departments d on
+e.dept_id=d.dept_id;
+
+-- Left Outer Join-- 
+-----------------------
+
+--> Return all records from left
+    table and matching records from right table.
+--> Returns all employees who has no department 
+    i.e., dept_name will be null.
+
+select e.emp_id,e.emp_name,d.dept_name
+from employees e
+left join departments d on
+e.dept_id=d.dept_id;
+
+-- Right outer join-- 
+------------------------
+
+--> Return all records from right
+    table and matching records from left table.
+--> Returns all departments, even though no employeesare assigned to them.
+
+
+select e.emp_id,e.emp_name,d.dept_name
+from employees e
+right join departments d on
+e.dept_id=d.dept_id;
+
+-- Full Outer Join-- 
+-----------------------
+
+--> LEFT JOIN UNION RIGHT JOIN
+--> MySQL does not support full outer join ,so we use union.
+
+select e.emp_id,e.emp_name,d.dept_name
+from employees e
+left join departments d on
+e.dept_id=d.dept_id
+union
+select e.emp_id,e.emp_name,d.dept_name
+from employees e
+right join departments d on
+e.dept_id=d.dept_id;
+
+
+-- Cross Join-- 
+---------------------
+
+--> Return every possible combination of rows.
+--> Total rows = rows in left table × rows in right table.
+--> Total rows= 8*6=48
+
+select e.emp_id,e.emp_name,d.dept_name
+from employees e
+cross join departments d;
+
+******************************************************************************************
+
+📌 Task 2: Python – Data Structures
+--------------------------------------------
+
+#### List ####
+------------------
+
+>>> append()- Adds to the end.
+>>> extend()- Adds multiple elements to the end.
+>>> insert()- Adds at specified index.
+>>> remove()- Removes the first occurance of the specified element.
+>>> pop()- Removes the last item.
+>>> pop(index)- Removes the specified index value.
+>>> sort()- Arrange the elements in accending order.
+>>> sort(reverse=True)- Arrange the elements in reverse order(descending).
+>>> reverse()- Reverses the current order.
+>>> index(element)- Gives the index value 
+>>> count(element)- Gives the no.of occurances.
+>>> clear()- Clears all the values and Returns empty list.
+
+>>> List with duplicate values
+
+fruits=["Apple","Banana","Cherry","Apple","Cherry","Pineapple"]
+fruits.append("Orange")
+fruits.extend(["Mango","Grapes"])
+fruits.insert(1,"Papaya")
+fruits.remove("Apple")
+fruits.pop()
+fruits.pop(2)
+print(fruits.index("Banana"))
+print(fruits.count("Cherry"))
+fruits.sort()
+fruits.reverse()
+fruits.sort(reverse=True)
+fruits.clear()
+print(fruits)
+
+Properties:
+------------
+--> Ordered: Maintains the order in which items are inserted.
+--> Mutable: We can change,add and remove items.
+--> Allows Duplicates: We can store the same value multiple items.
+
+
+#### Tuple ####
+------------------
+
+>>> index(element)- Gives the index value.
+>>> count(element)- Gives the no.of occurances.
+
+colors=("Red","Yellow","Blue","Orange","White","Blue","White",1,2,3,4)
+print(colors.index("Blue"))
+print(colors.count("White"))
+
+>>>Packing
+
+t=1,2,3,4,5,6
+
+>>>Unpacking
+
+a,b,c,d,e,f=t
+
+print(d)   # 4
+
+Properties:
+------------
+--> Ordered: Maintains insertion order.
+--> Immutable: We can't change,add and remove items.
+--> Allows Duplicates: We can store multiple identical values.
+--> Faster than list: Generally faster and more memory-efficient than list.
+
+#### Set ####
+------------------
+
+>>> add()- Adds a single element to the set.
+>>> remove()- Removes a specific item.
+>>> clear()- Removes all te elements.
+>>> union()- Combines two sets and removes Duplicates.
+>>> intersection()- Finds only the elements that exists in both sets.
+>>> difference()- Finds the items in the first set that are not in the second set.
+
+primeNum={2,3,5,7,5,2,7,3,13}
+primeNum.add(11)
+primeNum.remove(3)
+# primeNum.clear()
+print(primeNum)
+
+set1={1,2,3,4,5,6}
+set2={4,5,6,7,8,9}
+print(set1.union(set2)) #{1,2,3,4,5,6,7,8,9}
+print(set1.intersection(set2)) #{4,5,6}
+print(set1.difference(set2)) #{1,2,3}
+print(set2.difference(set1)) #{8,9,7}
+
+Properties:
+------------
+
+>>> Unordered- There is no paticular order to access elements.
+>>> Not Indexed- It cannot be accessed through index.
+>>> No Duplicates- The output automatically removes the Duplicates.
+>>> Mutable- We can add or remove items.
+
+#### Dictionary ####
+----------------------
+
+>>> keys()- Returns a list-like view of all the keys in the Dictionary.
+>>> values()- Returns a list-like view of all the values in the Dictionary.
+>>> pop(key)- Removes a specific key and returns its value.
+
+company={
+    "name":"Divya",
+    "company":"Stackly",
+    "role":"ASE",
+    "emp_id":"STK-25",
+    "remote":True
+}
+
+print(company.keys()) #dict_keys(['name', 'company', 'role', 'emp_id', 'remote'])
+print(company.values()) #dict_values(['Divya', 'Stackly', 'ASE', 'STK-25', True])
+print(company.pop("role")) #ASE
+print(company) #{'name': 'Divya', 'company': 'Stackly', 'emp_id': 'STK-25', 'remote': True}
+
+Properties:
+-------------
+
+>>> Key-value pair collection- Stores data in key:value pairs.
+>>> Keys must be unique- There should not be two identical keys.
+>>> Values can be Duplicated- Multiple keys can point to the same value.
+>>> Mutable- Values can be updated or new pairs can be added.
