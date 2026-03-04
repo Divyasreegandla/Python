@@ -11,6 +11,9 @@
 
 # def printSum(a,b):
 #     print(a+b)
+    #   print("A:"+str(a))
+    #   print("B:"+str(b))
+# printSum(10,12)
 # printSum(33,44)
 # # printSum("Hello",5) #error
 # printSum(b=100,a=99)
