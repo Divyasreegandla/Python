@@ -15,7 +15,7 @@
     #   print("B:"+str(b))
 # printSum(10,12)
 # printSum(33,44)
-# # printSum("Hello",5) #error
+# # printSum("Hello",5) 
 # printSum(b=100,a=99)
 
 # def printMul(a,b=10):

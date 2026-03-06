@@ -1,0 +1,236 @@
+📌 Task 1: Python – Functions
+---------------------------------
+1.
+Function:
+-------------
+-->A function is a self-contained block of code that only runs when it is called.
+-->It is the reuseability of code. It performs a specific task.
+-->Instead of writing the same 10 lines of code every time, we can call the Function whenever needed.
+-->It is created using 'def' keyword.
+
+Syntax:  def fun_name():
+              block of code
+         fun_name()    -->calling/invoking the function
+
+In-built and User-built Functions:
+-------------------------------------
+
+       In-built                                           User-built
+     -----------------                                 --------------------
+--> Pre-installed functions provided by           --> Functions created by the programmer for 
+    python.                                           specific needs.
+--> It can be directly called by the user.        --> Must be defined before they are called.
+--> The functionality can't be changed.           --> Rewrite the logic at any time by the programmer. 
+--> Ex:print(),len(),sum(),input(),etc.           --> calci(),multiply(),etc.
+
+2.
+User Defined Function & Demonstration:
+-----------------------------------------
+
+def abc():
+    print("Hi guys!!!!")     
+    print("Hi guys!!!!")     
+    print("Hi guys!!!!")     # block of code
+
+abc()   # calling a function
+
+--> Keyword: def
+        It tells python your defining a function.
+
+--> FunctionName: abc()
+        Its a function name given by the programmer.
+
+--> Body: print("Hi guys!!!!")
+        Block of code return in the function to perform specific task.
+
+--> Calling The Function: abc()
+        running the function by its name. It is mandatory.
+
+3.
+Parameters and Arguments:
+-----------------------------
+--> Parameters are the variables created in a function without value.
+--> Values assigned for those parameters while calling that function.
+
+def student(name,age,marks):
+    print("Name: ",name)
+    print("Age: ",age)
+    print("Marks: ",marks)
+student("Karan",21,88)
+
+Positional Arguments:
+-------------------------
+--> The order in which you pass the values must match with the order of the parameters.
+
+def myData(name,id,company,role):
+    print("Name: ",name)
+    print("Id: ",id)
+    print("Company: ",company)
+    print("Role: ",role)
+myData("Sai",101,"Stackly","ASE")    # Correct order
+myData(25,"Sai","Ase","Stackly")    # Wrong order because name cant be "25" and id cant be "Sai"
+                                      So order matters
+
+Keyword Arguments:
+--------------------
+--> Order does not matter.
+--> Explicitly states which parameter gets which value.
+--> Assigning values for parameters with the keyword.
+
+def student1(firstName,lastName):
+    print(firstName,lastName)
+student1(firstName="Divya",lastName="Sree")
+student1(lastName="Sree",firstName="Divya")
+
+def sumOfDigits(a,b):
+    print(a+b)
+sumOfDigits(a=10,b=15)
+sumOfDigits(b=25,a=10)
+
+Default Arguments:
+----------------------
+--> Assigning default value for parameter.
+--> If the user forgets to provide an argument, the function uses the default argument.
+
+def myFun(x,y=50):
+    print("x: ",x) #10
+    print("y: ",y) #50
+myFun(10)
+
+def myFun(x,y=50):
+    print("x: ",x)  # 10
+    print("y: ",y)  # 100  it is updated to 100
+myFun(10,100)
+
+Variable Length Arguments:
+-----------------------------
+--> When you dont know the number of arguments to be passed.
+--> Use *argument.   def fnName(*para)
+
+def multi(*n):
+    mul=1
+    for i in n:
+        mul*=i
+    print(mul)
+multi(1,2,3,4,5)   # 120
+
+Return Keyword:
+--------------------
+--> It stops the function (Stopping any futher code).
+--> It will return a data to the caller.
+
+def evenOdd(num):
+    if num%2==0:
+        return "Even Number"
+    else:
+        return "Odd Number"
+    
+result=evenOdd(int(input()))  # Stores a retured value in result
+print(result)
+
+def vote(age):
+    if age<18:
+        return "Not Eligible to vote"
+    else: 
+        return "Eligible to vote"
+voter=vote(int(input()))
+print(voter)
+
+**************************************************************************************************
+
+📌 Task 2: SQL – Aggregation & Grouping
+--------------------------------------------
+1.
+
+create database aggregation_db;
+use aggregation_db;
+
+2.
+
+create table employees(
+emp_id int primary key auto_increment,
+emp_name varchar(50) not null,
+salary float,
+department varchar(50) not null
+);
+
+3.
+
+insert into employees
+(emp_name,salary,department) values
+("Deva",45000.00,"Engineering"),
+("Gowri",40000.90,"Marketing"),
+("Shiva",40000.00,"Sales"),
+("Karthik",50000.80,"Engineering"),
+("Ayaan",50000.00,"Design"),
+("Sarthak",40000.00,"Sales"),
+("Yuvansh",45000.00,"Design");
+
+4.
+
+COUNT() --> Counts number of the row.
+MAX()   --> Finds out largest value.
+MIN()   --> Finds out smallest value.
+SUM()   --> Finds out the sum.
+AVG()   --> Finds average.
+
+select count(emp_id) from employees;
+select max(salary) from employees;
+select min(salary) from employees;
+select sum(salary) from employees;
+select avg(salary) from employees;
+
+5.
+
+Grouping rows having same values into summary rows.
+Syntax: Select aggFn() From Tbname GROUP BY col;
+
+select department,sum(salary) total_dept_sal
+from employees group by department;
+
+select department,avg(salary) avg_dept_sal
+from employees group by department;
+
+select department,count(emp_id) emp_count
+from employees group by department;
+
+6.
+
+Where Clause:
+
+--> Where is used to provide the condition and it is used to filter the records.
+--> Used to filter only the rows.
+--> It can be used with aggregate functions like sum() or count().
+
+Having Clause:
+
+--> The groups formed by usin group clause can be filtered using Having clause.
+--> Having can't be used without Group by.
+--> It filters after the group by is performed. It is specifically used to 
+    filter based on aggregate values.
+--> Used to filter groups.
+
+>>> Where clause examples:
+---------------------------
+
+select * from employees
+where department="Engineering";
+
+select * from employees
+where salary>45000;
+
+>>>Having by examples:
+-------------------------
+
+select department,sum(salary) total
+from employees
+group by department
+having sum(salary)>50000;
+
+select department,max(salary) 
+from employees
+group by department
+having max(salary)>40000;
+
+
+
