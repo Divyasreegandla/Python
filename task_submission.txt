@@ -1,0 +1,240 @@
+📌 Task 1: SQL – Subqueries:
+----------------------------------
+
+-- 1. Create the database --
+
+create database subquery_db;
+
+use subquery_db;
+
+-- 2. Create the employees table --
+
+create table employees (
+emp_id int primary key auto_increment,
+emp_name varchar(50),
+salary float,
+department varchar(50)
+);
+
+-- 3. Insert records --
+
+insert into employees (emp_name, salary, department) 
+VALUES ('Kiran', 50000, 'Engineering'),
+('Divya', 45000, 'Marketing'),
+('Cherry', 52000, 'Engineering'),
+('Deva', 70000, 'Design'),
+('Kumar', 80000, 'Engineering'),
+('Navya', 48000, 'Design'),
+('Gowri', 60000, 'Marketing'),
+('Hima', 80000, 'HR'),
+('Ayaan', 50000, 'Design'),
+('Sarthak', 60000, 'HR');
+
+select * from employees;
+
+4. SUB QUERIES
+
+--> A subquery is a query written inside another query.
+--> query(inner query).
+--> Inner query is executed first.
+--> The results of inner query is used in outer query.
+
+                                 -- Single Row Subquery --
+                                 ----------------------------
+
+--> This subquery returns exactly one value.
+
+select avg(salary) from employees;      -- o/p: 59500 --
+
+select emp_name,salary 
+from employees
+where salary > (select avg(salary) from employees);
+
+select max(salary) from employees;       -- o/p: 80000--
+
+select emp_name,salary
+from employees
+where salary=(select max(salary) from employees);
+
+select salary from employees where emp_name="Ayaan";        -- o/p: 50000 --
+
+select emp_name,salary
+from employees
+where salary >
+(select salary from employees where emp_name="Ayaan");
+
+
+                                -- Multiple Row Subqueries --
+                                -------------------------------
+
+--> This returns multiple values.
+         
+         IN:
+
+select department from employees 
+where salary > 75000;              -- o/p: Engineering,HR --
+
+select emp_name,department
+from employees
+where department in 
+(select department from employees where salary > 75000);
+
+         ANY: 
+
+select salary,department from employees
+where department="Engineering";             -- o/p: 50000,52000,80000 --
+
+select emp_name,salary,department
+from employees
+where salary > any 
+(select salary from employees where department="Engineering");
+
+         ALL:
+
+select salary from employees 
+where department="Design";                 -- o/p: 70000,48000,50000 --
+
+select emp_name,salary,department
+from employees
+where salary > all
+(select salary from employees where department="Design");
+
+                             -- Correlated Subquery --
+                             ------------------------------
+                            
+--> The subquery depends on the outer query.
+--> It executes once for every rows.
+
+select department,avg(salary) from employees
+group by department;        -- o/p: E:60666,M:52500,D:56000,HR:70000 --
+
+select emp_name,salary,department
+from employees e1 
+where salary > (select avg(salary) from employees e2
+where e2.department=e1.department);
+
+*************************************************************************************************************
+
+📌 Task 2: Python – Strings:
+-------------------------------
+
+1.
+
+String:
+-----------
+
+--> A String is a sequence of Characters.
+--> String literals in python are surrounded by either single quotation '....' ,or double 
+    quotation "...." or even '''......''' .
+--> String can be created by enclosing characters inside a single quote or double quote or triple quotes.
+--> Anything given as output is considered as String.
+
+Properties:
+-------------
+
+--> Iterable : You can loop through a string character by character (e.g., using a for loop).
+--> Immutable: Once a string is created its contents cannot be changes. If you modify a string it
+               creates a new string in memory.
+--> Ordered  : Each character has a specific position, known as index, starting from 0.
+
+2.
+
+String Operations:
+-----------------------
+
+Concatination (+): string + string 
+--> Joining two or more strings end-to-end to create a new, single string.
+--> str1+str2--> str1str2 
+--> We can only concatenate a string with another string , if we concatenate with
+    integer it gives type error.
+
+Repetition (*): string * integer
+--> It allows to create a new string by repeating a specific string a defined no.of times.
+--> str1*3 --> str1str1str1
+
+   # Concatination
+
+str1="Hello"
+str2="Guys!!!!!"
+
+print(str1+str2)  # HelloGuys!!!!!
+print(str1+" "+str2)  # Hello Guys!!!!!
+print(str1+" World")  # Hello World
+# print(str1+25)   # type error
+print(str1+str(25))    # Hello25
+
+    # Repetition
+
+print(str1*3)   # HelloHelloHello
+print(str1*3+" "+str2*2)  # HelloHelloHello Guys!!!!!Guys!!!!!
+print("Divya"*5)           # DivyaDivyaDivyaDivyaDivya
+
+3.
+
+Built-in String Methods:
+---------------------------
+
+--> .upper() : Converts every alphabetic characterin the string to upper case.
+--> .lower() : Converts every alphabetic characterin the string to lower case.
+--> .title() : Converts the string to "Title Case". The first letter of every word is capitalized.
+--> .capitalize() : Converts only the very first character of the entire string to upper case and all 
+                    remaining characters to lower case.
+
+string1="python IS A programming language"
+print(string1.upper())       # PYTHON IS A PROGRAMMING LANGUAGE
+print(string1.lower())       # python is a programming language
+print(string1.title())       # Python Is A Programming Language
+print(string1.capitalize())  # Python is a programming language
+
+4.
+
+Whitespace Removal Methods:
+--------------------------------
+
+--> .strip()  - Removes white space from both beginning (left) and the end (right) of the string.
+--> .lstrip() - Removes white space only from the left side of the string.
+--> .rstrip() - Removes white space only from the right side of the string.
+
+string="    Python is easy    "
+print(string.strip())   # Python is easy#
+print(string.lstrip())  # Python is easy    #
+print(string.rstrip())  #     Python is easy#
+
+5.
+
+Other String Methods:
+------------------------
+
+--> .replace(old,new) : Searches for specific substring(old) and replaces it with another(new).
+--> .split(breakChar) : Breaks a single string into a list of multiple substrings wherever the breakCharis used.
+--> .join(iterable)   : Merges a list into one string using a seperator.
+
+string2="I like to eat biyani."
+print(string2.replace("like","love"))    # I love to eat biyani.
+
+course="HTML,CSS,Java,Python"
+print(course.split(","))          # ['HTML', 'CSS', 'Java', 'Python']
+
+word=("Python","is","easy","to","understand.")
+print(" ".join(word))       # Python is easy to understand.
+
+word1=["Python","is","easy","to","understand."]
+print("--".join(word1))       # Python--is--easy--to--understand.
+
+6.
+
+Formatted Strings(f-strings):
+---------------------------------
+
+--> The most readable way to inject variables into strings.
+--> f"    {var1}   {var2}   "
+
+name="Divya"
+company="Stackly"
+yearOfJoin=2025
+
+print(f"My name is {name}. I work at {company} and my year of joining is {yearOfJoin}.")
+
+       # o/p: My name is Divya. I work at Stackly and my year of joining is 2025.
+
+********************************************************************************************************

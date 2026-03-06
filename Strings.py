@@ -11,7 +11,7 @@
 # print(lis)
 
 # str1=" hello"
-# # str[1]="z"
+# str[1]="z"
 # str1+=" world "  # new string is created
 # print(str1)
 # str1=" hello   world  hello guys  "
